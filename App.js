@@ -20,9 +20,9 @@ function App() {
     <div>
       <h1>Space Phenomena Tracker</h1>
       <ul>
-        <li>
-          {spacePhenomena[0].emoji} {spacePhenomena[0].name} {randomStatus}
-        </li>
+        {spacePhenomena.map((p) => (
+          <li key={p.id}>{`${p.emoji} ${p.name} - ${randomStatus}`}</li>
+        ))}
       </ul>
     </div>
   );
