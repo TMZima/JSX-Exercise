@@ -13,16 +13,29 @@ function App() {
   ];
 
   const observationStatuses = ["🔭 Visible", "🌫 Faint", "🚀 Prime for Study"];
-  const randomStatus =
-    observationStatuses[Math.floor(Math.random() * observationStatuses.length)];
 
   return (
     <div>
       <h1>Space Phenomena Tracker</h1>
       <ul>
-        {spacePhenomena.map((p) => (
-          <li key={p.id}>{`${p.emoji} ${p.name} - ${randomStatus}`}</li>
-        ))}
+        {spacePhenomena.map((spacePhenomenon) => {
+          // Randomly determine the observation status
+          const randomIndex = Math.floor(
+            Math.random() * observationStatuses.length
+          );
+          const observationStatus = observationStatuses[randomIndex];
+
+          return (
+            <li key={spacePhenomenon.id}>
+              {/* Render each space phenomenon with its emoji, name, and observation status */}
+              {`${spacePhenomenon.emoji} ${spacePhenomenon.name} - ${observationStatus}`}
+              {/* Conditional rendering for 'Prime for Study' status */}
+              {observationStatus === "🚀 Prime for Study" && (
+                <span> 💡 (Gear up with your best equipment!)</span>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
